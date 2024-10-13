@@ -1,0 +1,20 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Nothing to install"
+  pre_build:
+    commands:
+      - echo "Pre-build actions"
+  build:
+    commands:
+      - echo "Building application"
+      - zip -r index.zip index.html
+  post_build:
+    commands:
+      - echo "Uploading artifacts to S3"
+      - aws s3 cp index.zip s3://mybucket13102024/
+artifacts:
+  files:
+    - index.zip
